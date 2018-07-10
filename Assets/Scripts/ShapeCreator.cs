@@ -43,7 +43,7 @@ public class ShapeCreator : MonoBehaviour {
         clear(golist);
         golist.Clear();
 
-        for (int i = 0; i < Random.Range(3.0f, 10.0f); i++)
+        for (int i = 0; i < Random.Range(3.0f, 7.0f); i++)
         {
 
             //Output this to console when the Button is clicked
@@ -56,6 +56,7 @@ public class ShapeCreator : MonoBehaviour {
             go.transform.localScale = scale;
 
             SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
+            renderer.sortingLayerName = "Foreground";
             renderer.sprite = sprites[Random.Range(0, 3)];
 
             //Rigidbody2D rb2d = go.AddComponent<Rigidbody2D>();
@@ -64,7 +65,7 @@ public class ShapeCreator : MonoBehaviour {
             PolygonCollider2D polcol2d = go.AddComponent<PolygonCollider2D>();
 
             // set the position
-            Vector3 position = new Vector3(Random.Range(0.0f, 0.0f), Random.Range(-4.0f, 4.0f), 0);
+            Vector3 position = new Vector3(Random.Range(0.0f, 0.0f), Random.Range(-3.0f, 3.0f), 0);
             go.transform.position = position;
             Quaternion qTo = Quaternion.Euler(0, 0, Random.Range(-180.0f, 180.0f));
             go.transform.rotation = qTo;
@@ -77,7 +78,7 @@ public class ShapeCreator : MonoBehaviour {
                 while (collisionCheck(go, golist).Equals(false))
                 {
                     // set the position
-                    position = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-4.0f, 4.0f), 0);
+                    position = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-3.0f, 3.0f), 0);
                     go.transform.position = position;
                     qTo = Quaternion.Euler(0, 0, Random.Range(-180.0f, 180.0f));
                     go.transform.rotation = qTo;
@@ -132,6 +133,12 @@ public class ShapeCreator : MonoBehaviour {
             Destroy(objlist[i]);
         }
 
+    }
+
+    public void changeTheme ()
+    {
+        theme.text = wordlist[Random.Range(0, wordlist.Count)];
+        Debug.Log("Change");
     }
 
 }
